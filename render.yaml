@@ -1,0 +1,31 @@
+services:
+  # ---------- Backend: FastAPI ----------
+  - type: web
+    name: skyjet-backend
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m services.seed_data && uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.10
+      - key: OPENAI_API_KEY
+        sync: false          # set this in the Render dashboard if you have a key (optional)
+      - key: DATABASE_URL
+        value: sqlite:///./skyjet.db
+
+  # ---------- Frontend: Vite static site ----------
+  - type: web
+    name: skyjet-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false   # after the backend deploys, set this to its URL, e.g. https://skyjet-backend.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
