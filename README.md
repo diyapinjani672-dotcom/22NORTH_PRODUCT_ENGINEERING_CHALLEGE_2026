@@ -2,6 +2,16 @@
 
 Self-service disruption recovery platform with AI assistant, explainability, vouchers, baggage tracking, boarding pass, family recovery, and ops analytics.
 
+## Team Information
+
+**Team Name:** Code Red
+
+**Team Members:**
+- Diya Pinjani
+- Vrunda Parikh
+
+**College:** Sardar Vallabhbhai Patel Institute of Technology (SVIT)
+
 ## Features
 
 - **Live Journey Timeline** — scheduled milestones + disruptions + notifications
