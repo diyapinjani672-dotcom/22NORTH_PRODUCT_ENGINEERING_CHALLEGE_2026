@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Light theme (default) — warm, paper-like surfaces for daytime use */
+  :root {
+    --color-night: 247 245 241;          /* page background */
+    --color-night-surface: 255 255 255;  /* card surface */
+    --color-night-raised: 243 240 235;   /* inputs / raised surface */
+    --color-night-border: 224 219 209;
+    --color-ink: 30 27 22;
+    --color-ink-muted: 107 99 87;
+    --color-ink-faint: 148 140 128;
+    --color-gold: 194 132 42;
+    --color-gold-soft: 217 160 74;
+    --color-gold-dim: 138 106 49;
+    --color-recovery: 13 148 136;
+    --color-disrupt: 225 29 72;
+  }
+
+  /* Dark theme — control-tower navy, applied when <html class="dark"> */
+  .dark {
+    --color-night: 11 17 32;
+    --color-night-surface: 19 27 46;
+    --color-night-raised: 26 35 56;
+    --color-night-border: 37 48 74;
+    --color-ink: 241 245 249;
+    --color-ink-muted: 148 163 184;
+    --color-ink-faint: 100 116 139;
+    --color-gold: 232 169 76;
+    --color-gold-soft: 244 200 120;
+    --color-gold-dim: 138 106 49;
+    --color-recovery: 45 212 191;
+    --color-disrupt: 251 113 133;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgb(var(--color-gold) / 0.08), transparent),
+      rgb(var(--color-night));
+    min-height: 100vh;
+    transition: background-color 0.2s ease;
+  }
+  ::selection {
+    background: rgb(var(--color-gold) / 0.35);
+  }
+  *:focus-visible {
+    outline: 2px solid rgb(var(--color-gold));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-night-surface/70 backdrop-blur-xl border border-night-border;
+  }
+  .btn-primary {
+    @apply bg-gold text-night font-display font-semibold px-5 py-2.5 rounded-xl
+      hover:bg-gold-soft active:scale-[0.98] transition-all duration-150
+      disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-night-raised text-ink font-display font-medium px-5 py-2.5 rounded-xl
+      border border-night-border hover:border-gold/50 hover:text-gold
+      active:scale-[0.98] transition-all duration-150;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono font-medium tracking-wide;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
