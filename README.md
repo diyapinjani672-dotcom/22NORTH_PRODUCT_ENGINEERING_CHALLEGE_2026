@@ -1,4 +1,4 @@
-# SkyJet Flight Recovery MVP v2
+# SkyJet Flight Recovery 
 
 Self-service disruption recovery platform with AI assistant, explainability, vouchers, baggage tracking, boarding pass, family recovery, and ops analytics.
 
